@@ -90,7 +90,7 @@ getBooks = async () => {
 
         {this.state.books.length ? (
           <Carousel variant="dark">
-          {this.state.books.filter(book => book.email === this.props.user ).map( (books, idx) => (
+          {this.state.books.filter(books => books.email === this.props.user ).map( (books, idx) => (
             <Carousel.Item key={books._id}>
               <img className="d-block w-100" src="https://via.placeholder.com/3x1/999999/999999" alt="temp"/>
               <Carousel.Caption>
