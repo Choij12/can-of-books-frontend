@@ -32,3 +32,13 @@ Start time: 1pm
 Finish time: 5pm
 
 Actual time needed to complete: 4 Hours
+
+Name of feature: Lab12
+
+Estimate of time needed to complete: 4 Hours
+
+Start time: 1pm
+
+Finish time: 5pm
+
+Actual time needed to complete: 4 Hours
