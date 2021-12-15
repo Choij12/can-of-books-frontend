@@ -90,14 +90,14 @@ getBooks = async () => {
 
         {this.state.books.length ? (
           <Carousel variant="dark">
-          {this.state.books.filter(book => book.email === this.props.user ).map( (book, idx) => (
-            <Carousel.Item key={book._id}>
+          {this.state.books.filter(book => book.email === this.props.user ).map( (books, idx) => (
+            <Carousel.Item key={books._id}>
               <img className="d-block w-100" src="https://via.placeholder.com/3x1/999999/999999" alt="temp"/>
               <Carousel.Caption>
-                <h4>{book.title}</h4>
-                <h5>{book.status}</h5>
-                <p>{book.description}</p>
-                <DeleteButton book={book} deleteBook={this.deleteBook}/>
+                <h4>{books.title}</h4>
+                <h5>{books.status}</h5>
+                <p>{books.description}</p>
+                <DeleteButton books={books} deleteBook={this.deleteBook}/>
               </Carousel.Caption>
             </Carousel.Item>
           ))}

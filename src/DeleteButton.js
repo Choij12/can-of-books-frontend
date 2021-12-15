@@ -9,7 +9,7 @@ class DeleteButton extends React.Component {
   render() {
     return (
       <>
-        <Button onClick={() => this.props.deleteBook(this.props.book)}>Delete</Button>
+        <Button onClick={() => this.props.deleteBook(this.props.books)}>Delete</Button>
       </>
     )
   }
