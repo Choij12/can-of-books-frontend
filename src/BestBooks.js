@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, Carousel } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 import BookFormModal from './BookFormModal';
 import DeleteButton from './DeleteButton';
 
@@ -12,19 +13,10 @@ class BestBooks extends React.Component {
       formModal: false
     }
   }
-
-  postBooks = async (bookObj) => {
-    let serverURL = `${process.env.REACT_APP_SERVER_URL}/books`;
-    console.log(serverURL);
-    try {
-        const response = await axios.post(serverURL, bookObj);
-        this.setState({ books: [...this.state.books, response.data] });
-    } catch (error) {
-        console.log(error);
-    }
+  componentDidMount() {
+    this.getBooks();
   }
 
-  /* Make a GET request to your API to fetch books for the logged in user  */
   getBooks = async () => {
     let serverURL = `${process.env.REACT_APP_SERVER_URL}/books`;
     console.log(serverURL);
@@ -47,25 +39,36 @@ class BestBooks extends React.Component {
     this.setState({ formModal: false })
   }
 
-  componentDidMount() {
-    this.getBooks();
+
+  postBooks = async (bookObj) => {
+    let serverURL = `${process.env.REACT_APP_SERVER_URL}/books`;
+    console.log(serverURL);
+    try {
+        const response = await axios.post(serverURL, bookObj);
+        this.setState({ books: [...this.state.books, response.data] });
+    } catch (error) {
+        console.log(error.toString);
+    }
   }
+
+  
 
   deleteBook = async (bookObj) => {
     let serverURL = `${process.env.REACT_APP_SERVER_URL}/books/${bookObj._id}?email=${bookObj.email}`;
-    console.log(serverURL);
     try {
         const response = await axios.delete(serverURL);
         console.log(response.status);
-        if (response.status === 204) {
+        if (response.status === 204 ) {
           this.getBooks()
         } else {
-          console.log(response)
+          console.log(response.status)
         }
     } catch (error) {
-        console.log(error);
+        console.log(error.toString);
     }
   }
+
+
 
   render() {
     /* render user's books in a Carousel */
@@ -77,8 +80,8 @@ class BestBooks extends React.Component {
           Add a Book
         </Button>
 
-        <BookFormModal postBooks={this.postBooks} formModal={this.state.formModal} closeModal={this.closeModal}/>
-
+        {/* <BookFormModal postBooks={this.postBooks} formModal={this.state.formModal} closeModal={this.closeModal}/> */}
+        <BookFormModal user={this.props.user} postBooks={this.postBooks} formModal={this.state.formModal} closeModal={this.closeModal}/>
         {this.state.books.length ? (
           <Carousel variant="dark">
             {this.state.books.filter(book => book.email === this.props.user ).map( (book, idx) => (

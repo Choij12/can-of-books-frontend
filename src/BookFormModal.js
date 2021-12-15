@@ -17,8 +17,9 @@ export default class BookForModal extends React.Component {
             email: event.target.email.value
         }
         this.props.closeModal();
-        event.target.reset();
         this.props.postBooks(bookObj);
+        event.target.reset();
+       
     }
 
     render() {
