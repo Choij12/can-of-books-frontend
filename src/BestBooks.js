@@ -134,7 +134,7 @@ class BestBooks extends React.Component {
         alert(error.toString());
       }
     }
-
+  }
     // putBooks = async (bookObj) => {
     //   let serverURL = `${process.env.REACT_APP_SERVER_URL}/books/${bookObj._id}`;
     //   console.log(this.props.user)
@@ -174,7 +174,7 @@ class BestBooks extends React.Component {
         }
       }
     }
-  }
+  
 
     render() {
       /* render user's books in a Carousel */
